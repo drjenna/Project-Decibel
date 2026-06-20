@@ -1,7 +1,9 @@
 import { defineConfig } from 'astro/config';
 
+import cloudflare from "@astrojs/cloudflare";
+
 export default defineConfig({
-  // Static output — deploys perfectly to Cloudflare Pages
-  output: 'static',
+  output: "hybrid",
   site: 'https://project-decibel.com',
+  adapter: cloudflare()
 });
