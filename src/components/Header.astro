@@ -1,0 +1,155 @@
+---
+import { config } from '../config';
+
+const navLinks = [
+  { href: '/services', label: 'Services & Products' },
+  { href: '/our-story', label: 'Our Story' },
+  { href: '/education', label: 'Education' },
+  { href: '/contact', label: 'Contact' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<div class="availability-banner">
+  {config.availability}
+</div>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="logo" aria-label="Project Decibel — home">
+      <img src="/brand/logo.png" alt="Project Decibel" width="32" height="32" />
+      <span>Project Decibel</span>
+    </a>
+
+    <nav class="nav-desktop" aria-label="Main navigation">
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          class:list={['nav-link', { active: currentPath.startsWith(link.href) }]}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <a href={config.bookingConcierge} class="btn btn--primary nav-cta" target="_blank" rel="noopener">
+      Book an Appointment
+    </a>
+
+    <!-- Mobile menu toggle -->
+    <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <!-- Mobile nav -->
+  <nav class="nav-mobile" aria-label="Mobile navigation" hidden>
+    {navLinks.map(link => (
+      <a href={link.href} class="nav-mobile-link">{link.label}</a>
+    ))}
+    <a href={config.bookingConcierge} class="btn btn--primary" target="_blank" rel="noopener">
+      Book an Appointment
+    </a>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: white;
+    border-bottom: 1px solid var(--gray-light);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    height: 64px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .logo img { width: 28px; height: 28px; }
+
+  .nav-desktop {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    margin-left: auto;
+  }
+
+  .nav-link {
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: var(--gray-mid);
+    transition: color 0.15s;
+    white-space: nowrap;
+  }
+  .nav-link:hover, .nav-link.active { color: var(--black); }
+
+  .nav-cta { flex-shrink: 0; font-size: 0.875rem; padding: 9px 18px; }
+
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    margin-left: auto;
+  }
+  .menu-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--black);
+    border-radius: 2px;
+    transition: transform 0.2s;
+  }
+
+  .nav-mobile[hidden] { display: none; }
+
+  .nav-mobile {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 24px 24px;
+    border-top: 1px solid var(--gray-light);
+    gap: 4px;
+  }
+  .nav-mobile-link {
+    padding: 10px 0;
+    text-decoration: none;
+    font-size: 1rem;
+    border-bottom: 1px solid var(--gray-light);
+  }
+  .nav-mobile .btn { margin-top: 16px; text-align: center; }
+
+  @media (max-width: 768px) {
+    .nav-desktop { display: none; }
+    .nav-cta { display: none; }
+    .menu-toggle { display: flex; }
+    .header-inner { gap: 0; }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector('.menu-toggle') as HTMLButtonElement;
+  const mobileNav = document.querySelector('.nav-mobile') as HTMLElement;
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = !mobileNav.hidden;
+    mobileNav.hidden = isOpen;
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+  });
+</script>

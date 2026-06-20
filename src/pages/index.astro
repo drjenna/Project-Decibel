@@ -1,0 +1,215 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { config } from '../config';
+
+const mailtoGeneral = `mailto:${config.email}?subject=${encodeURIComponent(config.emailSubjectGeneral)}`;
+---
+
+<Layout>
+  <!-- ── 1. Intro ───────────────────────────────────────────────── -->
+  <section class="hero section">
+    <div class="container hero-inner">
+      <div class="hero-content">
+        <p class="page-eyebrow">Concierge Audiology · Denver</p>
+        <h1>Save Your Ears.</h1>
+        <p class="hero-sub">
+          We're on a mission to make hearing loss prevention easy, accessible, and
+          affordable, because protecting your hearing shouldn't be this hard. No clinics
+          to track down, no pressure, no upsell. Just expert, custom-fit care that comes
+          to you.
+        </p>
+        <div class="flex flex-wrap gap-sm mt-md">
+          <a href={config.bookingConcierge} class="btn btn--primary" target="_blank" rel="noopener">
+            Book an Appointment
+          </a>
+          <a href="/contact" class="btn btn--secondary">Get in Touch</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="/brand/ear-thumbsup.png" alt="" aria-hidden="true" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 2. Custom, Done Differently ────────────────────────────── -->
+  <section class="section section--alt">
+    <div class="container">
+      <h2 class="text-center">Custom, Done Differently</h2>
+      <p class="section-intro text-center mx-auto mt-sm">
+        Access, convenience, and cost are the top barriers to custom hearing protection —
+        so we come to you, for everything from impressions to your finished ear gear.
+      </p>
+      <div class="overview-grid mt-lg">
+        <div class="overview-card">
+          <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 9a6.5 6.5 0 1 1 13 0c0 2.7-1.7 3.9-3.2 5C13.9 14.9 13 15.6 13 17.5A3.5 3.5 0 0 1 6 18"/><path d="M9 9.5a3 3 0 0 1 6 0"/></svg></span>
+          <h3>Ear Impressions</h3>
+          <p>Precise digital impressions for custom-fit ear gear, kept on file for future orders.</p>
+        </div>
+        <div class="overview-card">
+          <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5c3 3.5 5.5 6.4 5.5 9.5a5.5 5.5 0 0 1-11 0c0-3.1 2.5-6 5.5-9.5z"/></svg></span>
+          <h3>Wax Removal</h3>
+          <p>Safe, professional earwax removal at home or on-site.</p>
+        </div>
+        <div class="overview-card">
+          <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h2.5l2-7 3.5 14 2.5-9 1.5 4 1.5-2H21"/></svg></span>
+          <h3>Consultations &amp; Screenings</h3>
+          <p>Informational at-home hearing screenings and one-on-one guidance, tailored to your hearing and the environments you listen in.</p>
+        </div>
+        <div class="overview-card">
+          <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="6.5"/><circle cx="12" cy="12" r="2.5"/></svg></span>
+          <h3>Custom Earplugs</h3>
+          <p>Filtered protection for musicians, crews, and anyone serious about their hearing.</p>
+        </div>
+        <div class="overview-card">
+          <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 13.2A8 8 0 1 1 10.8 3.5 6.2 6.2 0 0 0 20.5 13.2z"/></svg></span>
+          <h3>Custom Sleep Plugs</h3>
+          <p>Soft, made-to-fit plugs for a quieter night, every night.</p>
+        </div>
+        <div class="overview-card">
+          <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19.5c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/><path d="M16 5.2a3.2 3.2 0 0 1 0 6.2"/><path d="M20.5 19.5c0-2.4-1.4-4-3.4-4.6"/></svg></span>
+          <h3>Groups &amp; Events</h3>
+          <p>On-site impressions and protection for bands, crews, and corporate wellness events.</p>
+        </div>
+      </div>
+      <div class="text-center mt-lg">
+        <a href="/services" class="btn btn--secondary">See services &amp; pricing →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── How It Works ───────────────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <h2 class="text-center">How It Works</h2>
+      <div class="steps mt-lg">
+        <div class="step">
+          <div class="step-img"><img src="/brand/ear-impression.png" alt="Ear getting an impression taken" /></div>
+          <h3 class="step-title">1. Impressions</h3>
+          <p>We take precise digital ear impressions at the clinic or wherever works for you.</p>
+        </div>
+        <div class="step">
+          <div class="step-img"><img src="/brand/ear-scan.png" alt="Impressions scanned into a 3D file" /></div>
+          <h3 class="step-title">2. Scan</h3>
+          <p>Your impressions become a 3D digital file, kept on file and yours to keep.</p>
+        </div>
+        <div class="step">
+          <div class="step-img"><img src="/brand/ear-order.png" alt="Ordering custom ear gear" /></div>
+          <h3 class="step-title">3. Order</h3>
+          <p>Order earplugs, sleep plugs, or in-ear monitors any time — no repeat impressions needed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── The PdB Package ────────────────────────────────────────── -->
+  <section class="section">
+    <div class="container package">
+      <div class="package-text">
+        <h2>The PdB Package</h2>
+        <p class="package-desc">Everything you need in one visit:</p>
+        <ul class="package-list">
+          <li>Full hearing consultation with Dr. Jenna</li>
+          <li>Digital ear impressions for both ears, kept on file</li>
+          <li>A pair of custom filtered earplugs in your choice of color and style</li>
+        </ul>
+      </div>
+      <div class="package-buy">
+        <span class="package-price">${config.pricing.pdbPackage}</span>
+        <div class="package-ctas">
+          <a href={config.bookingConcierge} class="btn btn--light" target="_blank" rel="noopener">Book an Appointment</a>
+          <a href="/services" class="btn btn--onteal-ghost">All services &amp; pricing →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Ear Tips ───────────────────────────────────────────────── -->
+  <section class="section section--alt">
+    <div class="container eartips">
+      <div class="eartips-art">
+        <div class="eartips-frame">
+          <img src="/brand/safe-sound-limits.png" alt="Safe sound exposure limits" />
+        </div>
+      </div>
+      <div class="eartips-text">
+        <p class="page-eyebrow">Learn About Your Ears</p>
+        <h2>Ear Tips</h2>
+        <p class="mt-sm">
+          Damage to your hearing is invisible and painless — don't let that be a reason to
+          neglect your most valuable instrument. Learn how hearing works, what puts it at
+          risk, and how to protect it.
+        </p>
+        <a href="/education" class="btn btn--secondary mt-md">Visit Ear Tips →</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* ── Hero ── */
+  .hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+  .hero-content h1 { margin-top: 8px; }
+  .hero-sub { font-size: 1.1rem; color: #444; margin-top: 16px; }
+  .hero-image img { width: 100%; max-width: 420px; margin-left: auto; }
+
+  /* ── Section intros ── */
+  .section-intro { font-size: 1.05rem; color: #444; max-width: 640px; }
+  .mx-auto { margin-left: auto; margin-right: auto; }
+
+  /* ── Services overview grid ── */
+  .overview-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .overview-card { background: white; border: 1.5px solid var(--ink); border-radius: 10px; padding: 26px 24px; box-shadow: 4px 4px 0 var(--teal); }
+  .svc-icon { display: block; width: 30px; height: 30px; color: var(--rust); margin-bottom: 14px; }
+  .svc-icon svg { width: 100%; height: 100%; }
+  .overview-card h3 { margin-bottom: 8px; font-size: 1.05rem; }
+  .overview-card p { font-size: 0.9rem; color: #555; }
+
+  /* ── How It Works ── */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; text-align: center; }
+  .step-img { height: 150px; display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
+  .step-img img { max-height: 150px; width: auto; max-width: 100%; }
+  .step-title { font-size: 1.1rem; margin-bottom: 8px; }
+  .step p { font-size: 0.9rem; color: #555; max-width: 30ch; margin: 0 auto; }
+
+  /* ── PdB Package ── */
+  .package {
+    display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 40px; align-items: center;
+    background: var(--teal); color: #fff; border-radius: 16px; padding: 44px 48px;
+  }
+  .package h2 { color: #fff; }
+  .package-desc { color: #eaf0f0; margin-top: 4px; font-weight: 500; }
+  .package-list { list-style: none; margin-top: 16px; display: flex; flex-direction: column; gap: 11px; }
+  .package-list li { position: relative; padding-left: 26px; color: #dbe3e3; font-size: 0.95rem; }
+  .package-list li::before { content: '✓'; position: absolute; left: 0; color: var(--sand); font-weight: 700; }
+  .package-buy { background: rgba(255,255,255,0.08); border-radius: 12px; padding: 26px 24px; text-align: center; }
+  .package-price { display: block; font-size: 2.6rem; font-weight: 700; letter-spacing: -0.03em; color: #fff; line-height: 1; }
+  .package-ctas { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+  .package-ctas .btn { width: 100%; text-align: center; }
+  .btn--light { background: #fff; color: var(--teal); }
+  .btn--onteal-ghost { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.5); }
+
+  /* ── Ear Tips ── */
+  .eartips { display: grid; grid-template-columns: 0.9fr 1fr; gap: 56px; align-items: center; }
+  .eartips-art { display: flex; justify-content: center; }
+  .eartips-frame { position: relative; display: inline-block; max-width: 380px; }
+  .eartips-frame::before { content: ''; position: absolute; inset: 0; transform: translate(14px, 14px); background: var(--teal); border-radius: 14px; z-index: 0; }
+  .eartips-frame img { position: relative; z-index: 1; display: block; width: 100%; background: #fff; border: 1px solid var(--gray-light); border-radius: 14px; padding: 20px; }
+  .eartips-text { max-width: 520px; }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .overview-grid { grid-template-columns: repeat(2, 1fr); }
+    .steps { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 640px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-image { display: none; }
+    .package { grid-template-columns: 1fr; padding: 32px 28px; }
+    .eartips { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 560px) {
+    .overview-grid { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,429 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { config } from '../config';
+
+const facts = [
+  { stat: "1 in 3", text: "hearing losses stem from loud sound exposure — concerts, bands, headphones." },
+  { stat: "80%+", text: "of personal music device users listen at unsafe volume levels." },
+  { stat: "100%", text: "of loud noise-induced hearing loss is preventable with the right protection." },
+];
+
+const sounds = [
+  { label: "Mild to moderate loss", src: "/audio/mild-moderate.mp3" },
+  { label: "Mild to moderate loss, with hearing aids", src: "/audio/mild-moderate-aids.mp3" },
+  { label: "Severe to profound loss, with cochlear implant", src: "/audio/severe-profound-ci.mp3" },
+];
+
+const resources = [
+  { label: "Safe Listening Levels — Pocket Resource", href: "https://www.project-decibel.com/s/Hearing-Loss-Prevention-Pocket-Resource.png", kind: "Download" },
+  { label: "NIOSH Sound Level Meter App", href: "https://apps.apple.com/us/app/niosh-sound-level-meter/id1096545820", kind: "iOS app" },
+  { label: "Tinnitus Info & Resources", href: "https://www.project-decibel.com/tinnitus", kind: "Guide" },
+  { label: "Hearing Loss Info & Resources", href: "https://www.project-decibel.com/tinnitus-1", kind: "Guide" },
+];
+
+const appleHearing = "https://www.apple.com/airpods-pro/hearing-health/?afid=p240%7Cgo~cmp-22996441833~adg-190367116732~ad-811897487221_kwd-954458041609~dev-c~ext-~prd-~mca-~nt-search&cid=wwa-us-kwgo-airpods-noncore_p3-airpodspro3_hearinghealth-airpodspro3_hearinghealth_061126-AirPodsPro3-AirPodsPro3_Hearinghealth-";
+---
+
+<Layout title="Knowledge is Power" description="Hearing loss prevention starts with education. Learn how hearing works and how to protect it.">
+  <!-- ── Hero ───────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="page-eyebrow">Educate Yourself</p>
+        <h1>Knowledge is Power</h1>
+        <p class="hero-sub mt-sm">
+          Injury to your hearing is invisible and painless — don't let that be a reason to neglect
+          your most valuable instrument. Here's how hearing works, what puts it at risk, and how to protect it.
+        </p>
+      </div>
+      <div class="hero-art">
+        <img src="/brand/knowledge-is-power.png" alt="" aria-hidden="true" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ── The Facts ──────────────────────────────────────────────── -->
+  <section class="section section--alt">
+    <div class="container">
+      <h2>The Facts</h2>
+      <div class="facts-grid mt-lg">
+        {facts.map(f => (
+          <div class="fact-card">
+            <div class="fact-stat">{f.stat}</div>
+            <p>{f.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── How Hearing Works ──────────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <p class="page-eyebrow text-center">How Hearing Works</p>
+      <h2 class="text-center">A Quick Tour of Your Hearing</h2>
+      <div class="video-wrap">
+        <iframe
+          src="https://www.youtube.com/embed/PeTriGTENoc"
+          title="How hearing works"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+
+      <!-- What hearing injury looks like -->
+      <div class="injury-section">
+        <div class="injury">
+          <div class="injury-copy">
+            <h3 class="sub-head">What Hearing Injury Looks Like</h3>
+            <p class="injury-intro mt-sm">
+              Hair cells inside the cochlea — your hearing organ — can sustain permanent injury from
+              prolonged loud sound exposure. Healthy cells stand upright in orderly rows; damaged cells
+              bend and break, and they don't grow back.
+            </p>
+            <p class="mt-md causes-label">Hearing injury can also be caused by:</p>
+            <ul class="causes">
+              <li>Exposure to loud sound over time</li>
+              <li>Genetics</li>
+              <li>Medications</li>
+              <li>Viruses and disease</li>
+              <li>Poor vascular health</li>
+            </ul>
+          </div>
+          <div class="cells">
+            <figure class="cell">
+              <div class="cell-frame"><img src="/brand/edu-cochlea.png" alt="Healthy hair cells, upright and orderly" /></div>
+              <figcaption>Healthy — upright and orderly</figcaption>
+            </figure>
+            <figure class="cell">
+              <div class="cell-frame"><img src="/brand/edu-hair-cells.png" alt="Damaged hair cells, bent and disorganized" /></div>
+              <figcaption>Injured — bent and broken</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+
+      <!-- What hearing loss sounds like -->
+      <div class="sounds-section">
+        <div class="sounds-block">
+          <div class="sounds-art">
+            <div class="sounds-frame"><img src="/brand/ear-tree.png" alt="" aria-hidden="true" /></div>
+          </div>
+          <div class="sounds-copy">
+            <h3 class="sub-head">What Hearing Loss Sounds Like</h3>
+            <p class="mt-sm">
+              The same song, heard through different degrees of hearing loss and treatment. Press play
+              to hear the difference.
+            </p>
+            <div class="sound-players mt-md">
+              {sounds.map(s => (
+                <div class="sound-row">
+                  <span class="sound-label">{s.label}</span>
+                  <audio controls preload="none" src={s.src}></audio>
+                </div>
+              ))}
+            </div>
+            <p class="mt-md home-test">
+              Curious about your own hearing?
+              <a href="https://www.shoebox.md/products/shoebox-online/" target="_blank" rel="noopener">Try an at-home hearing test →</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Loud Sound-Induced Hearing Disorders ───────────────────── -->
+  <section class="section section--alt">
+    <div class="container">
+      <h2>Loud Sound-Induced Hearing Disorders</h2>
+      <p class="mt-sm section-sub">The most common sound-induced hearing disorders — all preventable. Tap to learn more.</p>
+
+      <div class="disorders mt-lg">
+        <details class="disorder">
+          <summary>
+            <span class="d-head">
+              <span class="d-title">Tinnitus</span>
+              <span class="d-teaser">Ringing, buzzing, or hissing in the ears — temporary or permanent.</span>
+            </span>
+          </summary>
+          <div class="disorder-body">
+            <p>
+              Tinnitus is hearing a sound that isn't in your environment — ringing, buzzing, hissing,
+              chirping. It's extremely common: an estimated 50 million Americans and more than 740
+              million adults worldwide. A leading theory is that it lives more in the auditory pathway
+              and brain than the ears themselves — possibly the brain compensating for hearing loss.
+            </p>
+            <p class="d-label">What can cause it</p>
+            <p>Hearing loss, noise exposure, ear wax, middle-ear or vestibular conditions, certain
+              medications (high-dose aspirin, salicylates, some antibiotics, loop diuretics,
+              chemotherapy), and head/neck issues like injuries or TMJ.</p>
+            <p class="d-label">What makes it worse</p>
+            <p>High stress, lack of sleep, a high salt or caffeine diet, and total silence.</p>
+            <p class="d-label">What you can do</p>
+            <p>Keep gentle sound in your environment, try hearing aids, and address related issues
+              (TMJ, neck pain, sleep, medications, diet). Our best advice: don't give the ringing too
+              much attention — let it become part of your "sound world" and fade into the background.</p>
+          </div>
+        </details>
+
+        <details class="disorder">
+          <summary>
+            <span class="d-head">
+              <span class="d-title">Permanent (Sensorineural) Hearing Loss</span>
+              <span class="d-teaser">Damage to the inner-ear hair cells — the kind noise causes.</span>
+            </span>
+          </summary>
+          <div class="disorder-body">
+            <p>
+              Hearing loss falls into two categories: <strong>conductive</strong> (outer or middle ear)
+              and <strong>sensorineural</strong> (the inner ear/cochlea or auditory nerve). Noise-induced
+              loss is usually sensorineural — something has bent or broken the hair cells, so a louder
+              sound is needed to activate them.
+            </p>
+            <p class="mt-sm">
+              With long-term noise exposure, hearing tests typically show a notch at 3,000–6,000 Hz —
+              the range where your ear canal resonates and the inner ear gets hit hardest. As we age,
+              the highest frequencies go first, which sounds like a loss of <em>speech clarity</em>
+              rather than volume: consonants like /s/, /sh/, and /t/ get hard to tell apart, so you find
+              yourself asking people to repeat themselves.
+            </p>
+            <p class="mt-sm">
+              There's no treatment yet that brings hair cells back (teams are researching it). For now,
+              the treatment is hearing aids, which amplify only the frequencies you're missing. The best
+              prevention is an annual hearing test so you have a baseline to compare against.
+            </p>
+            <div class="hl-tests">
+              <a class="interp" href="/brand/hearing-test-interpretation.png" target="_blank" rel="noopener">
+                <img src="/brand/hearing-test-interpretation.png" alt="How to interpret a hearing test" />
+                <span class="interp-cap">How to read a hearing test →</span>
+              </a>
+              <div class="hl-test-list">
+                <p class="d-label hl-label">Try an online hearing test</p>
+                <div class="test-buttons test-buttons--col">
+                  <a class="btn btn--secondary btn--sm" href="https://apps.apple.com/us/app/mimi-hearing-test/id932496645" target="_blank" rel="noopener">Mimi Hearing Test →</a>
+                  <a class="btn btn--secondary btn--sm" href={appleHearing} target="_blank" rel="noopener">Apple Hearing Health →</a>
+                  <a class="btn btn--secondary btn--sm" href="https://www.shoebox.md/products/shoebox-online/" target="_blank" rel="noopener">Shoebox Online →</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="disorder">
+          <summary>
+            <span class="d-head">
+              <span class="d-title">Hyperacusis & Recruitment</span>
+              <span class="d-teaser">Reduced tolerance for loud sound after hearing damage.</span>
+            </span>
+          </summary>
+          <div class="disorder-body">
+            <p>
+              Once the hearing system is injured, your ability to tolerate loud sound decreases.
+              With <strong>recruitment</strong>, a small increase in level (say 5 dB) can be perceived
+              like a 20 dB jump. <strong>Hyperacusis</strong> is when sound levels that used to be
+              comfortable become painfully uncomfortable to listen to.
+            </p>
+            <p class="mt-sm">
+              If sounds that never used to bother you have started to feel uncomfortable or painful,
+              that's worth talking through with an audiologist.
+            </p>
+            <div class="test-buttons mt-md">
+              <a class="btn btn--secondary btn--sm" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC539655/" target="_blank" rel="noopener">Hyperacusis Research (NCBI) →</a>
+            </div>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Tips ───────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="container tips-grid">
+      <div class="tips-copy">
+        <h2>Tips for Hearing Health</h2>
+        <div class="tips-list mt-lg">
+          <div class="tip">
+            <div class="tip-num">01</div>
+            <div>
+              <h3>Get annual hearing tests</h3>
+              <p>Establish a baseline and monitor changes over time. Catching loss early gives you more options.</p>
+            </div>
+          </div>
+          <div class="tip">
+            <div class="tip-num">02</div>
+            <div>
+              <h3>Track volume <em>and</em> duration</h3>
+              <p>Damage depends on both how loud and how long. 85 dB for 8 hours is the limit — every 3 dB increase cuts safe exposure time in half.</p>
+            </div>
+          </div>
+          <div class="tip">
+            <div class="tip-num">03</div>
+            <div>
+              <h3>Check your environment</h3>
+              <p>Use a free sound level meter app (like NIOSH SLM) to check noise levels before you commit to an hour in them.</p>
+            </div>
+          </div>
+          <div class="tip">
+            <div class="tip-num">04</div>
+            <div>
+              <h3>Treat earplugs like sunglasses</h3>
+              <p>Custom filtered earplugs reduce volume without losing sound quality. Keep them on you and make wearing them a habit.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tips-art">
+        <div class="tips-frame"><img src="/brand/safe-sound-limits.png" alt="Safe sound exposure limits" /></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Resource Library ───────────────────────────────────────── -->
+  <section class="section section--alt">
+    <div class="container">
+      <h2>Resource Library</h2>
+      <p class="mt-sm">For all your ear and hearing needs.</p>
+      <div class="resource-grid mt-lg">
+        {resources.map(r => (
+          <a href={r.href} class="resource-card" target="_blank" rel="noopener">
+            <span class="resource-kind">{r.kind}</span>
+            <span class="resource-label">{r.label}</span>
+            <span class="resource-arrow" aria-hidden="true">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ────────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="container edu-cta text-center">
+      <h2>Ready to protect your hearing?</h2>
+      <p class="mt-sm">
+        The best first step is a consultation. We'll talk through your exposure, your risks, and what protection makes sense for you.
+      </p>
+      <div class="flex flex-wrap gap-sm mt-md" style="justify-content: center;">
+        <a href={config.bookingConcierge} class="btn btn--primary" target="_blank" rel="noopener">Book an Appointment</a>
+        <a href="/contact" class="btn btn--secondary">Ask a Question</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero-sub { font-size: 1.1rem; color: #444; }
+  .page-eyebrow.text-center { max-width: none; }
+  .sub-head { font-size: 1.35rem; }
+  .section-sub { font-size: 1rem; color: #555; }
+
+  /* ── Hero ── */
+  .hero-grid { display: grid; grid-template-columns: 1.2fr 0.9fr; gap: 48px; align-items: center; }
+  .hero-art img { width: 100%; max-width: 420px; margin-left: auto; }
+
+  /* ── Facts ── */
+  .facts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .fact-card { background: #fff; border: 1.5px solid var(--ink); border-radius: 10px; padding: 26px; box-shadow: 4px 4px 0 var(--teal); }
+  .fact-stat { font-family: var(--font-display); font-size: 2rem; font-weight: 700; letter-spacing: -0.03em; color: var(--teal); margin-bottom: 8px; }
+  .fact-card p { font-size: 0.92rem; color: #555; }
+
+  /* ── Video (centered, padded below header) ── */
+  .video-wrap { position: relative; width: 100%; max-width: 820px; margin: 44px auto 0; aspect-ratio: 16 / 9; border: 1.5px solid var(--ink); border-radius: 12px; box-shadow: 6px 6px 0 var(--teal); overflow: hidden; }
+  .video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+  /* ── What injury looks like (copy left, images right) ── */
+  .injury-section { padding: 88px 0 64px; }
+  .injury { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+  .injury-intro { color: #444; }
+  .causes-label { font-weight: 600; color: var(--ink); }
+  .causes { margin-top: 8px; padding-left: 0; list-style: none; }
+  .causes li { position: relative; padding-left: 22px; margin-bottom: 6px; font-size: 0.95rem; color: #444; }
+  .causes li::before { content: '•'; position: absolute; left: 4px; color: var(--rust); font-weight: 700; }
+  .cells { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .cell { margin: 0; }
+  .cell-frame { background: #fff; border: 1.5px solid var(--ink); border-radius: 12px; box-shadow: 5px 5px 0 var(--teal); padding: 14px; }
+  .cell-frame img { width: 100%; display: block; }
+  .cell figcaption { margin-top: 10px; font-weight: 600; font-size: 0.85rem; color: var(--ink); text-align: center; }
+
+  /* ── What loss sounds like (tree stretches to copy height) ── */
+  .sounds-section { padding-bottom: 16px; }
+  .sounds-block { display: grid; grid-template-columns: 1fr 1.1fr; gap: 48px; align-items: center; }
+  .sounds-art { display: flex; justify-content: center; }
+  .sounds-frame { position: relative; display: inline-block; max-width: 400px; }
+  .sounds-frame::before { content: ''; position: absolute; inset: 0; transform: translate(12px, 12px); background: var(--teal); border-radius: 14px; z-index: 0; }
+  .sounds-frame img { position: relative; z-index: 1; display: block; width: 100%; background: #fff; border: 1.5px solid var(--ink); border-radius: 14px; padding: 18px; }
+  .sound-players { display: flex; flex-direction: column; gap: 16px; }
+  .sound-row { display: flex; flex-direction: column; gap: 6px; }
+  .sound-label { font-weight: 600; font-size: 0.9rem; color: var(--ink); }
+  .sound-row audio { width: 100%; max-width: 360px; }
+  .home-test { font-size: 0.95rem; color: #555; }
+  .home-test a { font-weight: 600; color: var(--rust); }
+
+  /* ── Disorders accordion ── */
+  .disorders { display: flex; flex-direction: column; gap: 14px; }
+  .disorder { background: #fff; border: 1.5px solid var(--ink); border-radius: 10px; box-shadow: 4px 4px 0 var(--teal); overflow: hidden; }
+  .disorder summary { cursor: pointer; padding: 20px 24px; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .disorder summary::-webkit-details-marker { display: none; }
+  .disorder summary::after { content: '+'; color: var(--rust); font-size: 1.6rem; font-weight: 700; line-height: 1; flex-shrink: 0; }
+  .disorder[open] summary::after { content: '–'; }
+  .disorder[open] summary { border-bottom: 1px solid var(--gray-light); }
+  .d-head { display: flex; flex-direction: column; gap: 3px; }
+  .d-title { font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; color: var(--ink); }
+  .d-teaser { font-size: 0.88rem; color: #666; }
+  .disorder-body { padding: 22px 24px 24px; max-width: 78ch; }
+  .disorder-body p { font-size: 0.92rem; color: #444; }
+  .disorder-body p + p { margin-top: 8px; }
+  .d-label { display: block; margin-top: 18px; margin-bottom: 4px; font-family: var(--font-display); font-weight: 600; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--rust); }
+  .hl-tests { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: center; margin-top: 22px; }
+  .interp { display: inline-block; text-decoration: none; color: var(--ink); }
+  .interp img { width: 100%; max-width: 440px; border: 1.5px solid var(--ink); border-radius: 10px; box-shadow: 4px 4px 0 var(--teal); display: block; background: #fff; }
+  .interp-cap { display: inline-block; margin-top: 10px; font-weight: 600; font-size: 0.9rem; color: var(--rust); }
+  .hl-label { margin-top: 0; }
+  .test-buttons { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+  .test-buttons--col { flex-direction: column; align-items: flex-start; }
+  .btn--sm { padding: 8px 16px; font-size: 0.85rem; }
+
+  /* ── Tips ── */
+  .tips-grid { display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 48px; align-items: center; }
+  .tips-list { display: flex; flex-direction: column; gap: 26px; }
+  .tip { display: grid; grid-template-columns: 48px 1fr; gap: 18px; align-items: start; }
+  .tip-num { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; color: var(--rust); }
+  .tip h3 { margin-bottom: 6px; font-size: 1.1rem; }
+  .tip p { font-size: 0.92rem; color: #555; }
+  .tips-frame { position: relative; display: inline-block; max-width: 320px; }
+  .tips-frame::before { content: ''; position: absolute; inset: 0; transform: translate(14px, 14px); background: var(--sand); border-radius: 14px; z-index: 0; }
+  .tips-frame img { position: relative; z-index: 1; display: block; width: 100%; background: #fff; border: 1.5px solid var(--ink); border-radius: 14px; padding: 16px; }
+
+  /* ── Resource Library ── */
+  .resource-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .resource-card {
+    display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--ink);
+    background: #fff; border: 1.5px solid var(--ink); border-radius: 10px; padding: 16px 20px;
+    box-shadow: 4px 4px 0 var(--teal); transition: transform 0.12s, box-shadow 0.12s;
+  }
+  .resource-card:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--teal); }
+  .resource-kind { flex-shrink: 0; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--rust); background: #f3e7df; border-radius: 20px; padding: 4px 10px; }
+  .resource-label { font-weight: 500; font-size: 0.92rem; }
+  .resource-arrow { margin-left: auto; color: var(--teal); font-weight: 700; }
+
+  .edu-cta { max-width: 600px; margin: 0 auto; }
+  .edu-cta p { color: #444; }
+
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-art { display: none; }
+    .facts-grid { grid-template-columns: 1fr; }
+    .injury { grid-template-columns: 1fr; }
+    .sounds-block { grid-template-columns: 1fr; align-items: start; }
+    .sounds-art { display: flex; justify-content: center; }
+    .hl-tests { grid-template-columns: 1fr; }
+    .tips-grid { grid-template-columns: 1fr; }
+    .tips-art { display: flex; justify-content: center; }
+    .resource-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 560px) {
+    .cells { grid-template-columns: 1fr 1fr; }
+  }
+</style>

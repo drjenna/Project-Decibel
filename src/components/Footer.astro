@@ -1,0 +1,122 @@
+---
+import { config } from '../config';
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+
+    <div class="footer-brand">
+      <a href="/" class="footer-logo">
+        <img src="/brand/logo.png" alt="Project Decibel" width="36" height="36" />
+        <div>
+          <div class="footer-logo-name">Project Decibel</div>
+          <div class="footer-logo-tagline">{config.tagline}</div>
+        </div>
+      </a>
+      <p class="footer-location">{config.location}</p>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-label">Explore</div>
+      <nav>
+        <a href="/services">Services & Products</a>
+        <a href="/our-story">Our Story</a>
+        <a href="/education">Education</a>
+        <a href="/contact">Contact</a>
+      </nav>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-label">Get in touch</div>
+      <a href={`mailto:${config.email}`}>{config.email}</a>
+      <p class="footer-avail">{config.availability}</p>
+    </div>
+
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      © {new Date().getFullYear()} Project Decibel. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--off-white);
+    border-top: 1px solid var(--gray-light);
+    margin-top: 80px;
+  }
+
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1.5fr;
+    gap: 48px;
+    padding: 56px 24px;
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--black);
+    margin-bottom: 12px;
+  }
+  .footer-logo img { width: 36px; height: 36px; }
+  .footer-logo-name { font-weight: 600; font-size: 1rem; }
+  .footer-logo-tagline { font-size: 0.82rem; color: var(--gray-mid); }
+
+  .footer-location {
+    font-size: 0.85rem;
+    color: var(--gray-mid);
+    margin-top: 4px;
+  }
+
+  .footer-col-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    margin-bottom: 16px;
+  }
+
+  .footer-col nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .footer-col a {
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: var(--black);
+    transition: opacity 0.15s;
+  }
+  .footer-col a:hover { opacity: 0.6; }
+
+  .footer-avail {
+    font-size: 0.82rem;
+    color: var(--gray-mid);
+    margin-top: 12px;
+    max-width: 28ch;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid var(--gray-light);
+    padding: 16px 0;
+    font-size: 0.8rem;
+    color: var(--gray-mid);
+  }
+
+  @media (max-width: 768px) {
+    .footer-inner {
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    .footer-brand { grid-column: 1 / -1; }
+  }
+
+  @media (max-width: 480px) {
+    .footer-inner { grid-template-columns: 1fr; }
+  }
+</style>

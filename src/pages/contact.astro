@@ -1,0 +1,120 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { config } from '../config';
+---
+
+<Layout title="Contact" description="Get in touch with Project Decibel — questions, scheduling, and event inquiries.">
+  <section class="section">
+    <div class="container contact-grid">
+      <div class="contact-intro">
+        <p class="page-eyebrow">Get in Touch</p>
+        <h1>Say Hello</h1>
+        <p class="mt-sm">
+          Questions about custom ear protection, scheduling, or an event? Send a note and Dr. Jenna
+          will get back to you. Replies go out on Wednesdays and Fridays.
+        </p>
+        <p class="mt-md contact-or">
+          Ready to book? <a href={config.bookingConcierge} target="_blank" rel="noopener">Schedule a concierge visit →</a>
+        </p>
+        <p class="mt-xs contact-or">
+          Prefer email? <a href={`mailto:${config.email}`}>{config.email}</a>
+        </p>
+      </div>
+
+      <form class="contact-form" id="contactForm">
+        <input type="hidden" name="access_key" value={config.formAccessKey} />
+        <input type="hidden" name="subject" value="New inquiry from project-decibel.com" />
+        <input type="hidden" name="from_name" value="Project Decibel Website" />
+        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
+
+        <label class="field">
+          <span>Name</span>
+          <input type="text" name="name" required />
+        </label>
+        <label class="field">
+          <span>Email</span>
+          <input type="email" name="email" required />
+        </label>
+        <label class="field">
+          <span>Interested in</span>
+          <select name="Interested in" required>
+            <option value="" disabled selected>Choose one…</option>
+            <option>Impressions</option>
+            <option>Custom Earplugs</option>
+            <option>Hearing Wellness Consultation</option>
+            <option>Event / Group Experience</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Message <em>(optional)</em></span>
+          <textarea name="message" rows="4"></textarea>
+        </label>
+        <button type="submit" class="btn btn--primary">Send Message</button>
+        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .contact-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 56px; align-items: start; }
+  .contact-intro p { color: #444; }
+  .contact-or { font-size: 0.95rem; }
+  .contact-or a { font-weight: 600; color: var(--rust); }
+  .mt-xs { margin-top: 8px; }
+
+  .contact-form {
+    background: #fff; border: 1.5px solid var(--ink); border-radius: 14px;
+    box-shadow: 6px 6px 0 var(--teal); padding: 32px; display: flex; flex-direction: column; gap: 18px;
+  }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field > span { font-weight: 600; font-size: 0.88rem; color: var(--ink); }
+  .field > span em { font-weight: 400; color: var(--gray-mid); font-style: normal; }
+  .field input, .field select, .field textarea {
+    font: inherit; color: var(--ink); background: #fff;
+    border: 1.5px solid var(--ink); border-radius: 8px; padding: 11px 13px; width: 100%;
+  }
+  .field textarea { resize: vertical; }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    outline: none; box-shadow: 0 0 0 3px rgba(57,81,89,0.18); border-color: var(--teal);
+  }
+  .contact-form .btn { align-self: flex-start; margin-top: 4px; }
+  .form-status { font-size: 0.9rem; margin: 0; min-height: 1.2em; }
+  .form-status.ok { color: var(--teal); font-weight: 600; }
+  .form-status.err { color: #a32d2d; font-weight: 600; }
+
+  @media (max-width: 768px) {
+    .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+    .contact-form { padding: 24px; }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('formStatus');
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    status.textContent = 'Sending…';
+    status.className = 'form-status';
+    const data = Object.fromEntries(new FormData(form));
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(data),
+      });
+      const json = await res.json();
+      if (json.success) {
+        form.reset();
+        status.textContent = "Thanks! Your message is on its way — we'll be in touch.";
+        status.className = 'form-status ok';
+      } else {
+        status.textContent = json.message || 'Something went wrong. Please email us directly.';
+        status.className = 'form-status err';
+      }
+    } catch {
+      status.textContent = 'Something went wrong. Please email us directly.';
+      status.className = 'form-status err';
+    }
+  });
+</script>

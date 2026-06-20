@@ -1,0 +1,168 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { config } from '../config';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = config.description,
+} = Astro.props;
+
+const pageTitle = title ? `${title} — ${config.siteName}` : `${config.siteName} — ${config.tagline}`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <title>{pageTitle}</title>
+    <link rel="icon" type="image/png" href="/brand/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Jost:wght@500;600;700&display=swap" rel="stylesheet" />
+    <style is:global>
+      /* ── Reset & Base ───────────────────────────────────────── */
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      :root {
+        --ink: #23303D;
+        --teal: #395159;
+        --mist: #90A3A7;
+        --rust: #935430;
+        --sand: #CBA688;
+        --black: #23303D;
+        --white: #ffffff;
+        --off-white: #EFEFEF;
+        --gray-light: #E2E6E7;
+        --gray-mid: #5C6B73;
+        --accent: #935430;
+        --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+        --font-display: 'Jost', 'Inter', system-ui, sans-serif;
+        --font-serif: Georgia, 'Times New Roman', serif;
+        --max-width: 1080px;
+        --spacing-section: 80px;
+      }
+
+      html { font-size: 16px; scroll-behavior: smooth; }
+
+      body {
+        font-family: var(--font-sans);
+        color: var(--black);
+        background: var(--white);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      img { max-width: 100%; height: auto; display: block; }
+      a { color: inherit; }
+
+      h1, h2, h3, h4 {
+        font-family: var(--font-display);
+        line-height: 1.2;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+      }
+
+      h1 { font-size: clamp(2.4rem, 5vw, 4rem); }
+      h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); }
+      h3 { font-size: 1.2rem; }
+
+      p { max-width: 68ch; }
+
+      .container {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      .section {
+        padding: var(--spacing-section) 0;
+      }
+
+      .section--alt {
+        background: var(--off-white);
+      }
+
+      /* ── Buttons ────────────────────────────────────────────── */
+      .btn {
+        display: inline-block;
+        padding: 12px 24px;
+        border-radius: 4px;
+        font-size: 0.95rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition: transform 0.12s, box-shadow 0.12s;
+        cursor: pointer;
+        border: none;
+        box-shadow: 3px 3px 0 rgba(35,48,61,0.18);
+      }
+      .btn:hover { transform: translate(-1px, -1px); box-shadow: 5px 5px 0 rgba(35,48,61,0.18); }
+      .btn:active { transform: translate(1px, 1px); box-shadow: 2px 2px 0 rgba(35,48,61,0.18); }
+
+      .btn--primary {
+        background: var(--teal);
+        color: var(--white);
+      }
+      .btn--secondary {
+        background: transparent;
+        color: var(--black);
+        border: 1.5px solid var(--black);
+      }
+
+      /* ── Availability Banner ────────────────────────────────── */
+      .availability-banner {
+        background: var(--teal);
+        border-bottom: 1px solid #2c3f45;
+        padding: 10px 24px;
+        font-size: 0.82rem;
+        color: #eef1ef;
+        text-align: center;
+      }
+
+      /* ── Page Hero ──────────────────────────────────────────── */
+      .page-eyebrow {
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 12px;
+      }
+
+      /* ── Utilities ──────────────────────────────────────────── */
+      .text-center { text-align: center; }
+      .mt-xs { margin-top: 8px; }
+      .mt-sm { margin-top: 16px; }
+      .mt-md { margin-top: 32px; }
+      .mt-lg { margin-top: 48px; }
+      .gap-sm { gap: 12px; }
+      .gap-md { gap: 24px; }
+      .gap-lg { gap: 40px; }
+      .flex { display: flex; }
+      .flex-wrap { flex-wrap: wrap; }
+      .items-center { align-items: center; }
+
+      @media (max-width: 640px) {
+        :root { --spacing-section: 48px; }
+        .btn { width: 100%; text-align: center; }
+      }
+    </style>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
